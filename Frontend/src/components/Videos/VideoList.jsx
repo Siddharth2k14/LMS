@@ -3,69 +3,88 @@ import axios from "axios";
 import { styled } from "@mui/system";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
-// Custom styled button using MUI's system
-const StyledButton = styled(Button)(({ theme }) => ({
+// Styled Components
+const StyledButton = styled(Button)({
   backgroundColor: "#007bff",
   color: "white",
-  "&:hover": {
-    backgroundColor: "#0056b3",
-  },
-}));
+  margin: "10px",
+  "&:hover": { backgroundColor: "#0056b3" },
+});
 
-// Custom style for the close button
-const CloseButton = styled(Button)(({ theme }) => ({
+const CloseButton = styled(Button)({
   position: "absolute",
   top: "10px",
   right: "10px",
   backgroundColor: "#ff5c5c",
   color: "white",
-  "&:hover": {
-    backgroundColor: "#e64a4a",
-  },
-}));
+  "&:hover": { backgroundColor: "#e64a4a" },
+});
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [open, setOpen] = useState(false);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState("");
 
   useEffect(() => {
+    console.log("Fetching videos...");
     axios
       .get("http://localhost:5000/api/videos")
-      .then((response) => setVideos(response.data))
+      .then((response) => {
+        console.log("Fetched videos:", response.data);
+        setVideos(response.data);
+      })
       .catch((error) => console.error("Error fetching videos:", error));
   }, []);
 
   const handleClickOpen = (videoUrl) => {
-    setSelectedVideo(videoUrl);
+    console.log("Clicked video URL:", videoUrl);
+    const embedUrl = convertToEmbedUrl(videoUrl);
+    console.log("Converted embed URL:", embedUrl);
+    setSelectedVideo(embedUrl);
     setOpen(true);
   };
 
   const handleClose = () => {
+    console.log("Closing modal...");
     setOpen(false);
-    setSelectedVideo(null);
+    setSelectedVideo("");
   };
 
+  const convertToEmbedUrl = (url) => {
+    if (url.includes("watch?v=")) {
+      return url.replace("watch?v=", "embed/");
+    } else if (url.includes("youtu.be/")) {
+      return url.replace("youtu.be/", "www.youtube.com/embed/");
+    }
+    return url;
+  };
+
+  useEffect(() => {
+    console.log("Modal open state:", open);
+  }, [open]);
+
   return (
-    <div className="video-list-container">
-      <ul>
+    <div style={{ padding: "20px" }}>
+      <h2>Video List</h2>
+      <ul style={{ listStyle: "none", padding: 0 }}>
         {videos.map((video) => (
-          <li key={video._id}>
-            <StyledButton onClick={() => handleClickOpen(video.url)}>{video.title}</StyledButton>
+          <li key={video?._id} style={{ marginBottom: "10px" }}>
+            <StyledButton onClick={() => handleClickOpen(video.url)}>
+              {video.title}
+            </StyledButton>
           </li>
         ))}
       </ul>
 
-      {/* MUI Dialog for the modal */}
+      {/* Video Modal */}
       <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth>
         <DialogTitle>Video</DialogTitle>
-        <DialogContent>
-          <CloseButton onClick={handleClose}>X</CloseButton>
+        <DialogContent style={{ position: "relative" }}>
           {selectedVideo && (
             <iframe
               width="100%"
-              height="400px"
-              src={selectedVideo.replace("watch?v=", "embed/")}
+              height="450px"
+              src={selectedVideo}
               title="YouTube Video"
               allowFullScreen
             ></iframe>

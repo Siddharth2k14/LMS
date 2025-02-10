@@ -1,0 +1,21 @@
+{
+"IoT" : 
+  [
+    {
+      "title": "Article Generator",
+      "url": "Backend/videos/Creating an Article Generator Website using Langchain and OpenAI ｜ Generative AI Series 🔥.mp4"
+    },
+    {
+      "title": "AI Based Discord Bot",
+      "url": "Backend/videos/HarryGPT - An AI Based Discord Bot 🔥 ｜ Generative AI Series.mp4"
+    },
+    {
+      "title": "LangChain Tutoral",
+      "url": "Backend/videos/LangChain Tutorial for Beginners ｜ Generative AI Series 🔥.mp4"
+    },
+    {
+      "title": "Dall-E Image Generator",
+      "url": "Backend/videos/Lets Build a Dall-E Image Generator Using OpenAI, Flask & Replit ｜ Generative AI Series 🔥.mp4"
+    }
+  ]
+}
