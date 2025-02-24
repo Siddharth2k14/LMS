@@ -6,7 +6,7 @@ import ImageSection from "../Notes/ImageSection.jsx";
 import Footer from "../Home/Footer.jsx";
 import VideoList from "./VideoList.jsx";
 import FileUploadSection from "../Notes/FileUploadSection.jsx";
-import VideoForm from "./VideoForm.jsx";
+// import VideoForm from "./VideoForm.jsx";
 
 const Videos = () => {
 
@@ -18,9 +18,9 @@ const Videos = () => {
              <Box>
                  <Dependent />
              </Box>
-             <Box>
+             {/* <Box>
                 <VideoForm />
-             </Box>
+             </Box> */}
              <ImageSection />
          </Box>
          <Footer />

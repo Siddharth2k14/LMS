@@ -27,34 +27,29 @@
 
 // export default router;
 
-
 import express from "express";
-import fs from "fs";
-import Video from "./videoSchema.js";
-
+import Video from "./videoSchema.js"
 
 const router = express.Router();
 
-router.post("/upload-json", async (req, res) => {
+// Get all videos
+router.get("/", async (req, res) => {
     try {
-        const data = fs.readFileSync("video.json", "utf-8");
-        const videos = JSON.parse(data);
-
-        await Video.insertMany(videos);
-
-        res.status(201).json({ message: "Videos uploaded successfully!" });
-    }catch (err){
-        res.status(500).json({ error: err.message });
+        const videos = await Video.find();
+        res.json(videos);
+    } catch (err) {
+        res.status(500).json({ error: "Failed to fetch videos" });
     }
 });
 
-router.get("/", async (req, res) => {
-    try{
-        const videos = await Video.find();
+// Get videos by subject
+router.get("/:subject", async (req, res) => {
+    try {
+        const videos = await Video.find({ subject: req.params.subject });
         res.json(videos);
-    }catch(err){
-        res.status(500).json({ error: err.message });
+    } catch (err) {
+        res.status(500).json({ error: "Failed to fetch videos by subject" });
     }
-})
+});
 
 export default router;

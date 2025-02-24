@@ -14,11 +14,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-connectUserDB();
 connectVideoDB();
+connectUserDB();
 
-app.use("/api/users", userRoutes);
 app.use("/api/videos", videoRoutes);
+app.use("/api/users", userRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

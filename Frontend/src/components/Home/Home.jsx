@@ -49,22 +49,22 @@ const DigitalLibraryCard = ({ image, title, description }) => {
 const Home = () => {
   const cardData = [
     {
-      image: "frontend/src/assets/Digital.webp",
+      image: "Frontend/src/assets/Digital.webp",
       title: "Digital Library",
       description: "Access a comprehensive collection of notes, YouTube videos, and reference books tailored for your subjects.",
     },
     {
-      image: "frontend/src/assets/Data.webp",
+      image: "Frontend/src/assets/Data.webp",
       title: "Secure Data Storage",
       description: "Store and manage your personal notes securely with our integrated data storage feature.",
     },
     {
-      image: "frontend/src/assets/Dashboard.webp",
+      image: "Frontend/src/assets/Dashboard.webp",
       title: "User-Friendly Dashboard",
       description: "Navigate through an intuitive dashboard that provides easy access to all learning materials and tools.",
     },
     {
-      image: "frontend/src/assets/Learning.webp",
+      image: "Frontend/src/assets/Learning.webp",
       title: "Collaborative Learning",
       description: "Engage with peers and educators through interactive tools and shared resources.",
     },

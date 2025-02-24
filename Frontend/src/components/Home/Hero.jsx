@@ -17,7 +17,7 @@ const Hero = () => {
                 <CardContent>
                     <Box display="flex" gap="50px">
                         <Box>
-                            <img src="frontend\src\assets\laptop-futuristic-technology-background-generative-ai-293456791.webp" width="600px" height="500px" />
+                            <img src="Frontend\src\assets\laptop-futuristic-technology-background-generative-ai-293456791.webp" width="600px" height="500px" />
                         </Box>
                         <Box display="flex" flexDirection="column" justifyContent="center" gap="70px">
                             <Typography variant="h4" fontWeight={500}>
